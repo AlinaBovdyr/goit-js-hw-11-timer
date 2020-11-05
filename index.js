@@ -1,15 +1,7 @@
-const refs = {
-  days: document.querySelector('[data-value="days"]'),
-  hours: document.querySelector('[data-value="hours"]'),
-  minutes: document.querySelector('[data-value="mins"]'),
-  seconds: document.querySelector('[data-value="secs"]')
-}
-
 class CountdownTimer {
-  constructor({ onTick, targetDate }) {
-    this.intervalId = null;
-    this.onTick = onTick;
+  constructor({ targetDate, selector }) {
     this.targetDate = targetDate;
+    this.selector = document.querySelector(selector);
 
     this.init();
     this.start();
@@ -17,18 +9,18 @@ class CountdownTimer {
 
   init() {
     const time = this.getTimeComponents(0);
-    this.onTick(time);
+    this.updateClockFace(time);
   }
 
   start() {
     const startTime = this.targetDate;
 
-    this.intervalId = setInterval(() => {
+    setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = startTime - currentTime;
       const time = this.getTimeComponents(deltaTime);
 
-      this.onTick(time);
+      this.updateClockFace(time);
     }, 1000);
   }
 
@@ -48,18 +40,16 @@ class CountdownTimer {
   padDays(value) {
     return String(value).padStart(3, '0');
   }
+
+  updateClockFace({ days, hours, mins, secs }) {
+    this.selector.textContent = `${days}:${hours}:${mins}:${secs}`;
+  }
 };
 
 new CountdownTimer({
   selector: '#timer-1',
-  targetDate: new Date('Dec 31, 2020'),
-  onTick: updateClockface,
+  targetDate: new Date(' November 9, 2020 10:59 pm'),
 });
 
-function updateClockface({ days, hours, mins, secs }) {
-  refs.days.textContent = `${days}`;
-  refs.hours.textContent = `${hours}`;
-  refs.minutes.textContent = `${mins}`;
-  refs.seconds.textContent = `${secs}`;
-}
+
 
