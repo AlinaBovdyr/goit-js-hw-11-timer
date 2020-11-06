@@ -13,8 +13,35 @@
 }
 
 .timer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-size: 40px;
+
+  color: #000;
+  /* background-color: #353d3d; */
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+
+  color: #fefefe;
+  background-color: #214141;
+  outline: 2px solid #000000;
+}
+
+.field:not(:last-child) {
+  margin-right: 10px;
+}
+
+.value {
   padding: 10px;
-  margin: 0 100px;
-  color: #fff;
-  background-color: #353d3d;
+  background-color: #172424;
+}
+
+.label {
+  padding: 5px;
+  font-size: 16px;
 }
