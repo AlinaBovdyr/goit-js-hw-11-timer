@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+a {
+  margin: 20px;
+  display: block;
+}
+
 .box {
   width: 400px;
   margin: 50px auto;
